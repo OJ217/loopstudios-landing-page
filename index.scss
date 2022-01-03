@@ -12,19 +12,55 @@ $very-dark-gray: hsl(0, 0%, 41%);
   font-family: "Alata", sans-serif;
 }
 
+section.header > * {
+  transition: 0.5s all ease-in-out;
+}
+
 body {
   min-height: 100vh;
   font-size: 15px;
+  .links {
+    a {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        width: auto;
+        height: 0px;
+        background-color: $white;
+        left: 0%;
+        right: 0%;
+      }
+      &:hover::after {
+        height: 4px;
+        transition: 0.08s all ease-in-out;
+      }
+    }
+  }
   section.header {
     min-height: 650px;
     background-image: url("./images/desktop/image-hero.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     background-blend-mode: darken;
     background-color: rgba(0, 0, 0, 0.4);
-    background-position: center;
     color: $white;
     padding-top: 64px;
+    transition: 0.5s all ease-in-out;
+    .mobile-nav-links {
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      gap: 64px;
+      a {
+        text-decoration: none;
+        color: $white;
+        font-weight: 400;
+      }
+    }
     .container {
       max-width: 1120px;
       margin: 0 auto;
@@ -36,9 +72,21 @@ body {
         max-width: 1120px;
         width: 100%;
         .icon-hamburger {
-          display: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 6px;
+          .bar {
+            display: none;
+            width: 30px;
+            height: 3px;
+            background-color: $white;
+            transition: 0.5s all ease-in-out;
+          }
           &:hover {
             cursor: pointer;
+            transition: 0.5s all ease-in-out;
           }
         }
         .nav-links {
@@ -53,6 +101,7 @@ body {
         }
       }
       .intro-container {
+        transition: 0.5s all ease-in-out;
         border: 2px solid $white;
         max-width: 652px;
         padding: 40px 48px;
@@ -61,6 +110,7 @@ body {
           font-size: 65px;
           font-weight: 300;
           text-transform: uppercase;
+          transition: 0.5s all ease-in-out;
         }
       }
     }
@@ -205,6 +255,18 @@ body {
   }
 }
 
+.icon-hamburger.active .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.icon-hamburger.active .bar:nth-child(2) {
+  opacity: 0%;
+}
+
+.icon-hamburger.active .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
 @media only screen and (max-width: 1160px) {
   section.header {
     padding-left: 40px;
@@ -217,8 +279,21 @@ body {
     background-image: url("./images/mobile/image-hero.jpg") !important;
     padding-left: 30px;
     padding-right: 30px;
+    &.active {
+      background-color: $black;
+      .nav-links,
+      .intro-container {
+        display: none;
+      }
+      .header-nav-container {
+        margin-bottom: 320px;
+      }
+      .mobile-nav-links {
+        display: flex;
+      }
+    }
   }
-  .icon-hamburger {
+  .icon-hamburger .bar {
     display: block !important;
   }
   .header-nav-container {
@@ -371,7 +446,5 @@ body {
     }
   }
 }
-
-// Mobile Menu
 
 // Navigation and Contact Link Animation

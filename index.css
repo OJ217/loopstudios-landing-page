@@ -7,9 +7,35 @@
   font-family: "Alata", sans-serif;
 }
 
+section.header > * {
+  -webkit-transition: 0.5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
+}
+
 body {
   min-height: 100vh;
   font-size: 15px;
+}
+
+body .links a {
+  position: relative;
+}
+
+body .links a::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: auto;
+  height: 0px;
+  background-color: white;
+  left: 0%;
+  right: 0%;
+}
+
+body .links a:hover::after {
+  height: 4px;
+  -webkit-transition: 0.08s all ease-in-out;
+  transition: 0.08s all ease-in-out;
 }
 
 body section.header {
@@ -17,11 +43,34 @@ body section.header {
   background-image: url("./images/desktop/image-hero.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   background-blend-mode: darken;
   background-color: rgba(0, 0, 0, 0.4);
-  background-position: center;
   color: white;
   padding-top: 64px;
+  -webkit-transition: 0.5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
+}
+
+body section.header .mobile-nav-links {
+  display: none;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 64px;
+}
+
+body section.header .mobile-nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
 }
 
 body section.header .container {
@@ -45,11 +94,35 @@ body section.header .container .header-nav-container {
 }
 
 body section.header .container .header-nav-container .icon-hamburger {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 6px;
+}
+
+body section.header .container .header-nav-container .icon-hamburger .bar {
   display: none;
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  -webkit-transition: 0.5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
 }
 
 body section.header .container .header-nav-container .icon-hamburger:hover {
   cursor: pointer;
+  -webkit-transition: 0.5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
 }
 
 body section.header .container .header-nav-container .nav-links {
@@ -69,6 +142,8 @@ body section.header .container .header-nav-container .nav-links a {
 }
 
 body section.header .container .intro-container {
+  -webkit-transition: 0.5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
   border: 2px solid white;
   max-width: 652px;
   padding: 40px 48px;
@@ -79,6 +154,8 @@ body section.header .container .intro-container h1 {
   font-size: 65px;
   font-weight: 300;
   text-transform: uppercase;
+  -webkit-transition: 0.5s all ease-in-out;
+  transition: 0.5s all ease-in-out;
 }
 
 body section.about {
@@ -275,6 +352,20 @@ body section.contact .contact-links-copyright p {
   color: dimgray;
 }
 
+.icon-hamburger.active .bar:nth-child(1) {
+  -webkit-transform: translateY(9px) rotate(45deg);
+          transform: translateY(9px) rotate(45deg);
+}
+
+.icon-hamburger.active .bar:nth-child(2) {
+  opacity: 0%;
+}
+
+.icon-hamburger.active .bar:nth-child(3) {
+  -webkit-transform: translateY(-9px) rotate(-45deg);
+          transform: translateY(-9px) rotate(-45deg);
+}
+
 @media only screen and (max-width: 1160px) {
   section.header {
     padding-left: 40px;
@@ -288,7 +379,22 @@ body section.contact .contact-links-copyright p {
     padding-left: 30px;
     padding-right: 30px;
   }
-  .icon-hamburger {
+  section.header.active {
+    background-color: black;
+  }
+  section.header.active .nav-links,
+  section.header.active .intro-container {
+    display: none;
+  }
+  section.header.active .header-nav-container {
+    margin-bottom: 320px;
+  }
+  section.header.active .mobile-nav-links {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .icon-hamburger .bar {
     display: block !important;
   }
   .header-nav-container .nav-links {
